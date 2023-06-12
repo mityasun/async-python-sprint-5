@@ -5,28 +5,28 @@ services:
   files_service:
     restart: always
     build: .
-    working_dir: /files-service
+    working_dir: /src
     command: ["/bin/bash", "/files-service/scripts/entrypoint.sh"]
     volumes:
       - files_service_data:/src
     env_file:
       - ./.env
     ports:
-      - '${PROJECT_PORT_EXTERNAL}:${PROJECT_PORT}'
+      - '8000:8000'
     depends_on:
-      - files_postgres
+      - url_postgres
     container_name: files_service
 
   files_postgres:
     image: postgres:14.5-alpine
     restart: always
-    user: '70:70'
+    user: "70:70"
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
       - ./.env
     ports:
-      - '${PG_PORT_EXTERNAL}:${PG_PORT}'
+      - "5432:5432"
     container_name: files_postgres
 
 volumes:
