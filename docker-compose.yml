@@ -11,8 +11,6 @@ services:
       - files_service_data:/files
     env_file:
       - ./.env
-    ports:
-      - '${PROJECT_PORT_EXTERNAL}:${PROJECT_PORT}'
     depends_on:
       - files_postgres
     networks:
@@ -28,8 +26,6 @@ services:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
       - ./.env
-    ports:
-      - '${PG_PORT_EXTERNAL}:${PG_PORT}'
     networks:
       - db_network
     container_name: files_postgres

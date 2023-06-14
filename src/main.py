@@ -21,9 +21,7 @@ def read_root():
     """Main page with welcome."""
 
     return (f'Welcome to {app_settings.app_title}! API docs: '
-            f'http://{app_settings.project_host}:{app_settings.project_port}'
-            f'/redoc'
-            )
+            f'http://localhost/redoc')
 
 
 app.include_router(

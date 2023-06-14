@@ -30,7 +30,6 @@ cd async-python-sprint-5
 APP_TITLE='File storage service'
 PROJECT_HOST=127.0.0.1
 PROJECT_PORT=8000
-PROJECT_PORT_EXTERNAL=8000
 NGINX_PORT=80
 ENGINE_ECHO=False
 FILE_FOLDER=files
@@ -40,8 +39,6 @@ TOKEN_LIFETIME=3600
 DATABASE_DSN=postgresql+asyncpg://postgres:postgres@files_postgres:5432/postgres
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=postgres
-PG_PORT_EXTERNAL=5432
-PG_PORT=5432
 ```
 
 Запустите сборку образа и запуск сервиса из файла Docker-compose:
@@ -51,7 +48,7 @@ docker-compose up -d --build
 
 Спецификация API будет доступна по ссылке:
 ```
-http://localhost:80/redoc
+http://localhost/redoc
 ```
 
 
