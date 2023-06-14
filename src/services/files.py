@@ -13,11 +13,11 @@ from fastapi import status
 from fastapi.responses import FileResponse
 from fastapi.responses import StreamingResponse
 
-from core.config import app_settings
-from core.logger import LOGGING
-from models.users import User
-from schemas.files import FileUpload, FileBase
-from services.base import BaseService
+from src.core.config import app_settings
+from src.core.logger import LOGGING
+from src.models.users import User
+from src.schemas.files import FileUpload, FileBase
+from src.services.base import BaseService
 
 logging_config.dictConfig(LOGGING)
 logger = logging.getLogger(__name__)

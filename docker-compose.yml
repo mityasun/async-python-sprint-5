@@ -8,13 +8,16 @@ services:
     working_dir: /files-service
     command: ["/bin/bash", "/files-service/scripts/entrypoint.sh"]
     volumes:
-      - files_service_data:/src
+      - files_service_data:/files
     env_file:
       - ./.env
     ports:
       - '${PROJECT_PORT_EXTERNAL}:${PROJECT_PORT}'
     depends_on:
       - files_postgres
+    networks:
+      - db_network
+      - backend_network
     container_name: files_service
 
   files_postgres:
@@ -27,7 +30,27 @@ services:
       - ./.env
     ports:
       - '${PG_PORT_EXTERNAL}:${PG_PORT}'
+    networks:
+      - db_network
     container_name: files_postgres
+
+  files_nginx:
+    image: nginx:1.19.3
+    restart: always
+    volumes:
+      - ./services/nginx_dev.conf:/etc/nginx/conf.d/default.conf
+      - files_service_data:/var/html/files/
+    ports:
+      - '${NGINX_PORT}:${NGINX_PORT}'
+    networks:
+      - backend_network
+    depends_on:
+      - files_postgres
+    container_name: files_nginx
+
+networks:
+  backend_network:
+  db_network:
 
 volumes:
   files_service_data:

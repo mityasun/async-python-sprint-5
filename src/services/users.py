@@ -11,9 +11,9 @@ from fastapi_users.authentication import (
     JWTStrategy,
 )
 
-from core.config import app_settings
-from core.logger import LOGGING
-from models.users import User, get_user_db
+from src.core.config import app_settings
+from src.core.logger import LOGGING
+from src.models.users import User, get_user_db
 
 logging_config.dictConfig(LOGGING)
 logger = logging.getLogger(__name__)

@@ -31,6 +31,7 @@ APP_TITLE='File storage service'
 PROJECT_HOST=127.0.0.1
 PROJECT_PORT=8000
 PROJECT_PORT_EXTERNAL=8000
+NGINX_PORT=80
 ENGINE_ECHO=False
 FILE_FOLDER=files
 MAX_FILE_SIZE=1048576
@@ -50,7 +51,7 @@ docker-compose up -d --build
 
 Спецификация API будет доступна по ссылке:
 ```
-http://127.0.0.1:8000/redoc
+http://localhost:80/redoc
 ```
 
 
@@ -357,7 +358,7 @@ http://127.0.0.1:8000/redoc
 ## Требования к решению
 
 1. В качестве СУБД используйте PostgreSQL (не ниже 10 версии).
-2. Опишите [docker-compose](dockerization/docker-compose.yml) для разработки и локального тестирования сервисов.
+2. Опишите [docker-compose](docker-compose.yml) для разработки и локального тестирования сервисов.
 3. Используйте концепции ООП.
 4. Предусмотрите обработку исключительных ситуаций.
 5. Приведите стиль кода в соответствие pep8, flake8, mypy.

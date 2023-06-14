@@ -3,7 +3,7 @@ from typing import List
 from fastapi_users import schemas
 from pydantic import UUID4, BaseModel
 
-from schemas.files import FileBase
+from src.schemas.files import FileBase
 
 
 class UserRead(schemas.BaseUser):

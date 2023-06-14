@@ -7,8 +7,8 @@ from fastapi import status
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from core.logger import LOGGING
-from db.db import get_session
+from src.core.logger import LOGGING
+from src.db.db import get_session
 
 logging_config.dictConfig(LOGGING)
 logger = logging.getLogger(__name__)

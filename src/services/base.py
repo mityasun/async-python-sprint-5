@@ -6,7 +6,7 @@ from pydantic import BaseModel
 from sqlalchemy import select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from db.db import Base
+from src.db.db import Base
 
 ModelType = TypeVar("ModelType", bound=Base)
 SchemaType = TypeVar("SchemaType", bound=BaseModel)
@@ -32,8 +32,7 @@ class BaseService:
         result = await self.db.execute(statement=statement)
         if is_one:
             return result.scalar_one_or_none()
-        else:
-            return result.scalars().all()
+        return result.scalars().all()
 
     async def create(self, *, obj_in: CreateSchemaType) -> ModelType:
         obj_in_data = jsonable_encoder(

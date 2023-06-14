@@ -2,11 +2,11 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.responses import ORJSONResponse
 
-from api.v1.files import files_router
-from api.v1.ping import ping_router
-from core.config import app_settings
-from schemas.users import UserCreate, UserRead, UserUpdate
-from services.users import auth_backend, fastapi_users
+from src.api.v1.files import files_router
+from src.api.v1.ping import ping_router
+from src.core.config import app_settings
+from src.schemas.users import UserCreate, UserRead, UserUpdate
+from src.services.users import auth_backend, fastapi_users
 
 app = FastAPI(
     title=app_settings.app_title,
@@ -42,10 +42,9 @@ app.include_router(
     fastapi_users.get_users_router(UserRead, UserUpdate),
     prefix="/api/v1/users", tags=['Users'],
 )
-
-
 app.include_router(ping_router, prefix='/api/v1')
 app.include_router(files_router, prefix='/api/v1')
+
 
 if __name__ == '__main__':
     uvicorn.run(
